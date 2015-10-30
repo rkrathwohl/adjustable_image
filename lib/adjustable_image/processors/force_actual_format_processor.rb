@@ -8,9 +8,11 @@ module Paperclip
         if attachment.present?
           update_attachment_with_new_file_data
         end
-      end
 
-      destination || @file
+        destination
+      else
+        @file
+      end
     end
 
     private

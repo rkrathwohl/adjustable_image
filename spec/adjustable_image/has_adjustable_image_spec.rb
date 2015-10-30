@@ -34,7 +34,7 @@ describe AdjustableImage::HasAdjustableImage do
     end
 
     it 'adds serialization to the image adjustments' do
-      expect(fake_class).to have_received(:serialize).with(:image_adjustments, ImageAdjustments)
+      expect(fake_class).to have_received(:serialize).with(:image_adjustments, AdjustableImage::ImageAdjustments)
     end
 
     it 'defines an image_adjustments setter' do

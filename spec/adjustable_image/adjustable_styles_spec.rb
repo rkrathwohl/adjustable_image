@@ -33,8 +33,11 @@ describe AdjustableImage::AdjustableStyles do
       end
 
       context 'with existing image adjustments' do
-        let(:image_adjustments) { ImageAdjustments.new(crop_x: 1, crop_y: 1, crop_width: 1, crop_height: 1,
-                                                       resize_width_to: 1, resize_height_to: 1) }
+        let(:image_adjustments) do
+          AdjustableImage::ImageAdjustments.new(crop_offset_x: 1, crop_offset_y: 1,
+                                                new_image_width: 1, new_image_height: 1,
+                                                resize_width_to: 1, resize_height_to: 1)
+        end
 
         context 'with no base style name' do
           let(:subject) { StylesContainer.new({}, image_adjustments, false) }
@@ -119,8 +122,8 @@ describe AdjustableImage::AdjustableStyles do
               it 'adds the styles from the image adjustment' do
                 base_image_styles.delete(:processors)
 
-                expect(base_image_styles).to eq({ crop_x: 1, crop_y: 1,
-                                                  crop_width: 1, crop_height: 1,
+                expect(base_image_styles).to eq({ crop_offset_x: 1, crop_offset_y: 1,
+                                                  new_image_width: 1, new_image_height: 1,
                                                   resize_width_to: 1, resize_height_to: 1,
                                                   background_color: 'FFFFFF', geometry: '1x1' })
               end
@@ -211,7 +214,7 @@ class StylesContainer
 
   def initialize(options, adjustments, new_record)
     self.image_style_options = options
-    self.image_adjustments = adjustments || ImageAdjustments.new
+    self.image_adjustments = adjustments || AdjustableImage::ImageAdjustments.new
     self.new_record = new_record
   end
 
