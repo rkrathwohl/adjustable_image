@@ -4,7 +4,7 @@ describe Paperclip::DynamicExtentProcessor do
   let(:mock_file) { double('mock file', path: 'mock_file.png') }
   let(:processor) { described_class.new(mock_file, options) }
 
-  let(:base_options) { { geometry: '15x15', file_geometry_parser: MockGeoParser } }
+  let(:base_options) { { geometry: '15x15', file_geometry_parser: MockGeometryParser } }
 
   describe '#transformation_command' do
     describe 'commands' do
