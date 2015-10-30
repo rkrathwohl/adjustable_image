@@ -9,6 +9,7 @@ require 'paperclip'
 require 'adjustable_image/processors/background_color_processor'
 require 'adjustable_image/processors/dynamic_extent_processor'
 require 'adjustable_image/processors/dynamic_resize_processor'
+require 'adjustable_image/processors/force_actual_format_processor'
 
 module AdjustableImage
   def self.options
