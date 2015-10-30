@@ -8,8 +8,8 @@ Gem::Specification.new do |specification|
   specification.version       = AdjustableImage::VERSION
   specification.authors       = ["Rebecca Krathwohl"]
   specification.email         = ["rkrathwohl@charitybuzz.com"]
-  specification.summary       = %q{In conjection with cropper-tool jquery plugin, upload & crop images appropriately.}
-  specification.description   = %q{Optional means it doesn't need to show up.}
+  specification.summary       = %q{In conjection with cropper-tool jquery plugin, upload & crop images appropriately using imagemagick and Paperclip.}
+  specification.description   = %q{Cropper-tool jquery plugin will be uploaded to git shortly.}
   specification.homepage      = ""
   specification.license       = "MIT"
 
