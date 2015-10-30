@@ -2,6 +2,7 @@ require "adjustable_image/version"
 
 require 'adjustable_image/has_adjustable_image'
 require 'adjustable_image/adjustable_styles'
+require 'adjustable_image/image_adjustments'
 
 require 'paperclip'
 
