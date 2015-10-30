@@ -6,6 +6,8 @@ require 'adjustable_image/image_adjustments'
 
 require 'paperclip'
 
+require 'adjustable_image/processors/background_color_processor'
+
 module AdjustableImage
   def self.options
     @options ||= {}
