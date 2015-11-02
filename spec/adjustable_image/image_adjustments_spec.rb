@@ -123,4 +123,24 @@ describe AdjustableImage::ImageAdjustments do
     end
   end
 
+  describe 'backporting values' do
+    let(:options) do
+      { crop_x: 70, crop_y: 60,
+        crop_width: 16, crop_height: 32,
+        resize_width_to: 600, resize_height_to: 800,
+        background_color: 'DDD'
+      }
+    end
+
+    describe 'crop_y and crop_x/crop_height and crop_width' do
+      it 'saves the values into new_image_height and new_image_width/crop_offset_x and crop_offset_y' do
+        expect(JSON.parse(described_class.dump(described_class.new(options)))).to eq({
+                                                                                       'crop_offset_x' => 70, 'crop_offset_y' => 60,
+                                                                                       'new_image_width' => 16, 'new_image_height' => 32,
+                                                                                       'resize_width_to' => 600, 'resize_height_to' => 800,
+                                                                                       'background_color' => 'DDD'
+                                                                                     })
+      end
+    end
+  end
 end
