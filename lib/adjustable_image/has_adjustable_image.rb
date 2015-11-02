@@ -55,7 +55,7 @@ module AdjustableImage
 
     def set_image_style_options
       image_options = @options.slice(:force_actual_format, :base_style_name).
-        merge(static_styles: @options[:styles], default_processors: @options[:processors])
+        merge(static_styles: @options[:styles] || {}, default_processors: @options[:processors])
 
       @klass.send(:image_style_options=, image_options)
     end
