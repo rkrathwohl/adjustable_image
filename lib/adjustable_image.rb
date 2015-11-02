@@ -12,7 +12,7 @@ require 'adjustable_image/processors/dynamic_resize_processor'
 require 'adjustable_image/processors/force_actual_format_processor'
 require 'adjustable_image/processors/reset_base_style_processor'
 
-require 'adjustable_image/railtie'
+require 'adjustable_image/railtie' if defined?(Rails::Railtie)
 
 module AdjustableImage
   def self.options

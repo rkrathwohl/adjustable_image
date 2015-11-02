@@ -34,8 +34,8 @@ describe AdjustableImage::AdjustableStyles do
 
       context 'with existing image adjustments' do
         let(:image_adjustments) do
-          AdjustableImage::ImageAdjustments.new(crop_offset_x: 1, crop_offset_y: 1,
-                                                new_image_width: 1, new_image_height: 1,
+          AdjustableImage::ImageAdjustments.new(crop_x: 1, crop_y: 1,
+                                                crop_width: 1, crop_height: 1,
                                                 resize_width_to: 1, resize_height_to: 1)
         end
 
@@ -122,8 +122,8 @@ describe AdjustableImage::AdjustableStyles do
               it 'adds the styles from the image adjustment' do
                 base_image_styles.delete(:processors)
 
-                expect(base_image_styles).to eq({ crop_offset_x: 1, crop_offset_y: 1,
-                                                  new_image_width: 1, new_image_height: 1,
+                expect(base_image_styles).to eq({ crop_x: 1, crop_y: 1,
+                                                  crop_width: 1, crop_height: 1,
                                                   resize_width_to: 1, resize_height_to: 1,
                                                   background_color: 'FFFFFF', geometry: '1x1' })
               end

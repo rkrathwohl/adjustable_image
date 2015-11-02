@@ -9,8 +9,8 @@ describe Paperclip::DynamicExtentProcessor do
   describe '#transformation_command' do
     describe 'commands' do
       let(:options) do
-        base_options.merge(new_image_width: 30, new_image_height: 45,
-                           crop_offset_x: 2, crop_offset_y: -4)
+        base_options.merge(crop_width: 30, crop_height: 45,
+                           crop_x: 2, crop_y: -4)
       end
 
       let(:commands) { processor.transformation_command }
@@ -31,8 +31,8 @@ describe Paperclip::DynamicExtentProcessor do
     describe 'crop offset x' do
       context 'when the crop offset x is positive' do
         let(:options) do
-          base_options.merge(new_image_width: 50, new_image_height: 50,
-                             crop_offset_x: 130, crop_offset_y: 0)
+          base_options.merge(crop_width: 50, crop_height: 50,
+                             crop_x: 130, crop_y: 0)
         end
 
         it 'adds a plus crop x to the extent command' do
@@ -42,8 +42,8 @@ describe Paperclip::DynamicExtentProcessor do
 
       context 'when the crop offset x is 0' do
         let(:options) do
-          base_options.merge(new_image_width: 50, new_image_height: 50,
-                             crop_offset_x: 0, crop_offset_y: 0)
+          base_options.merge(crop_width: 50, crop_height: 50,
+                             crop_x: 0, crop_y: 0)
         end
 
         it 'adds a plus crop x to the extent command' do
@@ -53,8 +53,8 @@ describe Paperclip::DynamicExtentProcessor do
 
       context 'when the crop offset x is negative' do
         let(:options) do
-          base_options.merge(new_image_width: 50, new_image_height: 50,
-                             crop_offset_x: -30, crop_offset_y: 0)
+          base_options.merge(crop_width: 50, crop_height: 50,
+                             crop_x: -30, crop_y: 0)
         end
 
         it 'adds the crop offset x to the extent command' do
@@ -66,8 +66,8 @@ describe Paperclip::DynamicExtentProcessor do
     describe 'crop offset y' do
       context 'when the crop offset y is positive' do
         let(:options) do
-          base_options.merge(new_image_width: 100, new_image_height: 100,
-                             crop_offset_x: 0, crop_offset_y: 55)
+          base_options.merge(crop_width: 100, crop_height: 100,
+                             crop_x: 0, crop_y: 55)
         end
 
         it 'adds a plus crop y to the extent command' do
@@ -77,8 +77,8 @@ describe Paperclip::DynamicExtentProcessor do
 
       context 'when the crop offset y is 0' do
         let(:options) do
-          base_options.merge(new_image_width: 100, new_image_height: 100,
-                             crop_offset_x: 0, crop_offset_y: 0)
+          base_options.merge(crop_width: 100, crop_height: 100,
+                             crop_x: 0, crop_y: 0)
         end
 
         it 'adds a plus crop y to the extent command' do
@@ -88,8 +88,8 @@ describe Paperclip::DynamicExtentProcessor do
 
       context 'when the crop offset y is negative' do
         let(:options) do
-          base_options.merge(new_image_width: 100, new_image_height: 100,
-                             crop_offset_x: 0, crop_offset_y: -74)
+          base_options.merge(crop_width: 100, crop_height: 100,
+                             crop_x: 0, crop_y: -74)
         end
 
         it 'adds the crop offset y to the extent command' do

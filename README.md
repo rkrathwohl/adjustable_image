@@ -50,7 +50,7 @@ convert the image to something.jpg).  It will also add the appropriate extension
 The adjusted image will have the following processors applied before any processors specified (for that style or all styles):
 * `DynamicResizeProcessor` - needs `resize_width_to` and `resize_height_to`
 * `BackgroundColorProcessor` - needs `background_color` - in hex without the hash sign.  Defaults to FFFFFF
-* `DynamicExtentProcessor` - needs `new_image_width`, `new_image_height`, `crop_offset_x`, `crop_offset_y` - using the
+* `DynamicExtentProcessor` - needs `crop_width`, `crop_height`, `crop_x`, `crop_y` - using the
  resized image (from the dynamic resize processor), readjust the image using the new height & width, and crop using the offsets
 
 All thumbnails will have the following processor applied before any other processers as specified (for that style or all styles):
