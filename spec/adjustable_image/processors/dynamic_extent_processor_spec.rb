@@ -15,16 +15,40 @@ describe Paperclip::DynamicExtentProcessor do
 
       let(:commands) { processor.transformation_command }
 
-      it 'returns 2 commands' do
-        expect(commands.size).to eq(2)
+      it 'returns 3 commands' do
+        expect(commands.size).to eq(3)
+      end
+
+      it 'adds a background color' do
+        expect(commands.first).to eq("-background '#FFFFFF'")
       end
 
       it 'adds a crop width by crop height extent command' do
-        expect(commands.first).to eq('-extent 30x45+2-4')
+        expect(commands.second).to eq('-extent 30x45+2-4')
       end
 
       it 'adds a repage command' do
         expect(commands.last).to eq('+repage')
+      end
+    end
+
+    describe 'background color' do
+      let(:extent_options) { { crop_width: 10, crop_height: 10, crop_x: 0, crop_y: 0 } }
+      context 'when the background color option is set' do
+
+        let(:options) { base_options.merge(extent_options.merge(background_color: '718FFF')) }
+
+        it 'returns -background color' do
+          expect(processor.transformation_command.first).to eq("-background '#718FFF'")
+        end
+      end
+
+      context 'when the background color option is not set' do
+        let(:options) { base_options.merge(extent_options) }
+
+        it 'returns -background white' do
+          expect(processor.transformation_command.first).to eq("-background '#FFFFFF'")
+        end
       end
     end
 
@@ -36,7 +60,7 @@ describe Paperclip::DynamicExtentProcessor do
         end
 
         it 'adds a plus crop x to the extent command' do
-          expect(processor.transformation_command.first).to eq('-extent 50x50+130+0')
+          expect(processor.transformation_command.second).to eq('-extent 50x50+130+0')
         end
       end
 
@@ -47,7 +71,7 @@ describe Paperclip::DynamicExtentProcessor do
         end
 
         it 'adds a plus crop x to the extent command' do
-          expect(processor.transformation_command.first).to eq('-extent 50x50+0+0')
+          expect(processor.transformation_command.second).to eq('-extent 50x50+0+0')
         end
       end
 
@@ -58,7 +82,7 @@ describe Paperclip::DynamicExtentProcessor do
         end
 
         it 'adds the crop offset x to the extent command' do
-          expect(processor.transformation_command.first).to eq('-extent 50x50-30+0')
+          expect(processor.transformation_command.second).to eq('-extent 50x50-30+0')
         end
       end
     end
@@ -71,7 +95,7 @@ describe Paperclip::DynamicExtentProcessor do
         end
 
         it 'adds a plus crop y to the extent command' do
-          expect(processor.transformation_command.first).to eq('-extent 100x100+0+55')
+          expect(processor.transformation_command.second).to eq('-extent 100x100+0+55')
         end
       end
 
@@ -82,7 +106,7 @@ describe Paperclip::DynamicExtentProcessor do
         end
 
         it 'adds a plus crop y to the extent command' do
-          expect(processor.transformation_command.first).to eq('-extent 100x100+0+0')
+          expect(processor.transformation_command.second).to eq('-extent 100x100+0+0')
         end
       end
 
@@ -93,7 +117,7 @@ describe Paperclip::DynamicExtentProcessor do
         end
 
         it 'adds the crop offset y to the extent command' do
-          expect(processor.transformation_command.first).to eq('-extent 100x100+0-74')
+          expect(processor.transformation_command.second).to eq('-extent 100x100+0-74')
         end
       end
     end

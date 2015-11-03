@@ -1,7 +1,7 @@
 module AdjustableImage
   module AdjustableStyles
 
-    BASE_STYLE_PROCESSORS = [:dynamic_resize_processor, :background_color_processor, :dynamic_extent_processor]
+    BASE_STYLE_PROCESSORS = [:dynamic_resize_processor, :dynamic_extent_processor]
     NON_BASE_STYLE_PROCESSORS = [:reset_base_style_processor]
 
     def dynamic_styles
