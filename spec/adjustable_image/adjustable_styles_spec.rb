@@ -135,7 +135,7 @@ describe AdjustableImage::AdjustableStyles do
                 expect(base_image_styles).to eq({ crop_x: 1, crop_y: 1,
                                                   crop_width: 1, crop_height: 1,
                                                   image_width: 1, image_height: 1,
-                                                  background_color: 'FFFFFF', geometry: '1x1' })
+                                                  background_color: '#FFFFFF', geometry: '1x1' })
               end
             end
           end

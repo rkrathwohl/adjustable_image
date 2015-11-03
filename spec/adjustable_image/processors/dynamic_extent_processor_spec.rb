@@ -36,7 +36,7 @@ describe Paperclip::DynamicExtentProcessor do
       let(:extent_options) { { crop_width: 10, crop_height: 10, crop_x: 0, crop_y: 0 } }
       context 'when the background color option is set' do
 
-        let(:options) { base_options.merge(extent_options.merge(background_color: '718FFF')) }
+        let(:options) { base_options.merge(extent_options.merge(background_color: '#718FFF')) }
 
         it 'returns -background color' do
           expect(processor.transformation_command.first).to eq("-background '#718FFF'")

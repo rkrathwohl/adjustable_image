@@ -14,7 +14,7 @@ describe AdjustableImage::ImageAdjustments do
         expect(adjustments.crop_height).to eq(0)
         expect(adjustments.image_width).to eq(0)
         expect(adjustments.image_height).to eq(0)
-        expect(adjustments.background_color).to eq('FFFFFF')
+        expect(adjustments.background_color).to eq('#FFFFFF')
       end
     end
 
@@ -28,7 +28,7 @@ describe AdjustableImage::ImageAdjustments do
         expect(adjustments.crop_height).to eq(0)
         expect(adjustments.image_width).to eq(0)
         expect(adjustments.image_height).to eq(0)
-        expect(adjustments.background_color).to eq('FFFFFF')
+        expect(adjustments.background_color).to eq('#FFFFFF')
       end
     end
 
@@ -45,14 +45,14 @@ describe AdjustableImage::ImageAdjustments do
         expect(adjustments.crop_height).to eq(0)
         expect(adjustments.image_width).to eq(300)
         expect(adjustments.image_height).to eq(400)
-        expect(adjustments.background_color).to eq('infinity')
+        expect(adjustments.background_color).to eq('#infinity')
       end
     end
 
     context 'when the json is a hash with the appropriate key/values' do
       let(:json_hsh) do
         "{\"crop_x\":15,\"crop_y\":20,\"crop_width\":100,\"crop_height\":120," +
-          "\"image_width\":300,\"image_height\":400,\"background_color\":\"F71322\"}"
+          "\"image_width\":300,\"image_height\":400,\"background_color\":\"#F71322\"}"
       end
 
       it 'returns a new ImageAdjustments model with filled attributes' do
@@ -62,7 +62,25 @@ describe AdjustableImage::ImageAdjustments do
         expect(adjustments.crop_height).to eq(120)
         expect(adjustments.image_width).to eq(300)
         expect(adjustments.image_height).to eq(400)
-        expect(adjustments.background_color).to eq('F71322')
+        expect(adjustments.background_color).to eq('#F71322')
+      end
+    end
+
+
+    context 'when the json is a hash with the appropriate key/values except the background color has no hash mark' do
+      let(:json_hsh) do
+        "{\"crop_x\":20,\"crop_y\":20,\"crop_width\":10,\"crop_height\":120," +
+          "\"image_width\":100,\"image_height\":100,\"background_color\":\"871322\"}"
+      end
+
+      it 'returns a new ImageAdjustments model with filled attributes' do
+        expect(adjustments.crop_x).to eq(20)
+        expect(adjustments.crop_y).to eq(20)
+        expect(adjustments.crop_width).to eq(10)
+        expect(adjustments.crop_height).to eq(120)
+        expect(adjustments.image_width).to eq(100)
+        expect(adjustments.image_height).to eq(100)
+        expect(adjustments.background_color).to eq('#871322')
       end
     end
   end
@@ -94,7 +112,7 @@ describe AdjustableImage::ImageAdjustments do
       expect(described_class.new(options).styles_hash).to eq({ crop_x: 14, crop_y: 90,
                                                                crop_width: 144, crop_height: 322,
                                                                image_width: 600, image_height: 800,
-                                                               background_color: 'CCC', geometry: '144x322'
+                                                               background_color: '#CCC', geometry: '144x322'
                                                              })
     end
   end

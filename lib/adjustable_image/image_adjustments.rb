@@ -22,7 +22,11 @@ module AdjustableImage
       self.image_width = (opts[:image_width] || opts[:resize_width_to]).to_i || 0
       self.image_height = (opts[:image_height] || opts[:resize_height_to]).to_i || 0
 
-      self.background_color = opts[:background_color] || 'FFFFFF'
+      if opts[:background_color].present?
+        self.background_color = opts[:background_color] =~ /#/ ? opts[:background_color] : "##{opts[:background_color]}"
+      end
+
+       self.background_color ||= '#FFFFFF'
     end
 
     def self.load(json)

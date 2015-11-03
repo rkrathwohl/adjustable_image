@@ -7,7 +7,7 @@ module Paperclip
       crop_y = "#{'+' if @options[:crop_y] >= 0 }#{ @options[:crop_y] }"
 
       [
-        "-background '##{ @options[:background_color] || 'FFFFFF' }'",
+        "-background '#{ @options[:background_color] || '#FFFFFF' }'",
         "-extent #{ crop_width_height }#{ crop_x }#{ crop_y }",
         "+repage"
       ]
