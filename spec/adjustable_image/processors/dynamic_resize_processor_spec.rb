@@ -6,7 +6,7 @@ describe Paperclip::DynamicResizeProcessor do
 
   let(:options) do
     { geometry: '5x5', file_geometry_parser: MockGeometryParser,
-      resize_width_to: 144, resize_height_to: 224}
+      image_width: 144, image_height: 224}
   end
 
   describe '#transformation_command' do

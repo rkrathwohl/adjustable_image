@@ -6,7 +6,8 @@ module AdjustableImage
                   :crop_y, # crop offset for y
                   :crop_width, # new image width after crop
                   :crop_height, # new image height after crop
-                  :resize_width_to, :resize_height_to,
+                  :image_width, # resize the image width to
+                  :image_height, # resize the image height to
                   :background_color
 
     def initialize(opts = {})
@@ -18,8 +19,8 @@ module AdjustableImage
       self.crop_height = opts[:crop_height].to_i || 0
       self.crop_width = opts[:crop_width].to_i || 0
 
-      self.resize_width_to = opts[:resize_width_to].to_i || 0
-      self.resize_height_to = opts[:resize_height_to].to_i || 0
+      self.image_width = (opts[:image_width] || opts[:resize_width_to]).to_i || 0
+      self.image_height = (opts[:image_height] || opts[:resize_height_to]).to_i || 0
 
       self.background_color = opts[:background_color] || 'FFFFFF'
     end
@@ -43,8 +44,8 @@ module AdjustableImage
         crop_y: crop_y,
         crop_width: crop_width,
         crop_height: crop_height,
-        resize_width_to: resize_width_to,
-        resize_height_to: resize_height_to,
+        image_width: image_width,
+        image_height: image_height,
         background_color: background_color,
         geometry: geometry
       }
@@ -55,7 +56,7 @@ module AdjustableImage
     end
 
     def has_adjustments?
-      [ crop_x, crop_y, crop_width, crop_height, resize_width_to, resize_width_to ].any?{ |attr| attr != 0 }
+      [ crop_x, crop_y, crop_width, crop_height, image_width, image_height ].any?{ |attr| attr != 0 }
     end
   end
 end

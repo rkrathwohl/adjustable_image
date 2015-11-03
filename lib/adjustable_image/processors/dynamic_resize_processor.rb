@@ -2,7 +2,7 @@ module Paperclip
   class DynamicResizeProcessor < Thumbnail
     def transformation_command
       [
-        "-resize '#{@options[:resize_width_to]}x#{@options[:resize_height_to]}'",
+        "-resize '#{@options[:image_width]}x#{@options[:image_height]}'",
         "+repage"
       ]
     end

@@ -46,7 +46,7 @@ describe AdjustableImage::AdjustableStyles do
         let(:image_adjustments) do
           AdjustableImage::ImageAdjustments.new(crop_x: 1, crop_y: 1,
                                                 crop_width: 1, crop_height: 1,
-                                                resize_width_to: 1, resize_height_to: 1)
+                                                image_width: 1, image_height: 1)
         end
 
         context 'with no base style name' do
@@ -134,7 +134,7 @@ describe AdjustableImage::AdjustableStyles do
 
                 expect(base_image_styles).to eq({ crop_x: 1, crop_y: 1,
                                                   crop_width: 1, crop_height: 1,
-                                                  resize_width_to: 1, resize_height_to: 1,
+                                                  image_width: 1, image_height: 1,
                                                   background_color: 'FFFFFF', geometry: '1x1' })
               end
             end
