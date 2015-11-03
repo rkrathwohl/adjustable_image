@@ -2,6 +2,16 @@ require 'spec_helper'
 
 describe AdjustableImage::AdjustableStyles do
 
+  describe '#reprocess_thumbnails' do
+    let(:image) { double('image') }
+    let(:subject) { StylesContainer.new({}, nil, false, image) }
+
+    it 'reassigns the image to itself (force thumbnail reprocessing)' do
+      expect(subject).to receive(:image=).with(image)
+      subject.reprocess_thumbnails
+    end
+  end
+
   describe '#dynamic_styles' do
     context 'when the attached-to object is a new record' do
       let(:subject) { StylesContainer.new(image_style_options, nil, true) }
@@ -210,12 +220,13 @@ end
 class StylesContainer
   include AdjustableImage::AdjustableStyles
 
-  attr_accessor :image_style_options, :image_adjustments, :new_record
+  attr_accessor :image_style_options, :image_adjustments, :new_record, :image
 
-  def initialize(options, adjustments, new_record)
+  def initialize(options, adjustments, new_record, image = nil)
     self.image_style_options = options
     self.image_adjustments = adjustments || AdjustableImage::ImageAdjustments.new
     self.new_record = new_record
+    self.image = image
   end
 
   def new_record?

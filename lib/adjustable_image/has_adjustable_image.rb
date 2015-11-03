@@ -23,9 +23,10 @@ module AdjustableImage
 
       override_user_styles_with_dynamic_injection
 
+      force_thumbnail_reprocess_on_update
+
       add_paperclip_attached_file
     end
-
 
     def include_instance_style_methods
       @klass.send(:include, AdjustableStyles)
@@ -62,6 +63,10 @@ module AdjustableImage
 
     def override_user_styles_with_dynamic_injection
       @options[:styles] = lambda{ |attachment| attachment.instance.dynamic_styles }
+    end
+
+    def force_thumbnail_reprocess_on_update
+      @klass.send(:before_update, :reprocess_thumbnails)
     end
 
     def add_paperclip_attached_file

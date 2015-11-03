@@ -4,6 +4,10 @@ module AdjustableImage
     BASE_STYLE_PROCESSORS = [:dynamic_resize_processor, :dynamic_extent_processor]
     NON_BASE_STYLE_PROCESSORS = [:reset_base_style_processor]
 
+    def reprocess_thumbnails
+      self.image = self.image
+    end
+
     def dynamic_styles
       if self.new_record?
         style_for_new_instance

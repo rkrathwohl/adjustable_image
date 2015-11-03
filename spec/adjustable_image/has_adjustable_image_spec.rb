@@ -24,6 +24,7 @@ describe AdjustableImage::HasAdjustableImage do
              serialize: nil,
              class_attribute: nil,
              include: nil,
+             before_update: nil,
              'image_style_options=' => nil)
     end
 
@@ -41,14 +42,14 @@ describe AdjustableImage::HasAdjustableImage do
       expect(fake_class).to have_received(:define_method).with(:image_adjustments=)
     end
 
-    it 'defines the image_style_options getter helper method' do
-      expect(fake_class).to have_received(:define_method).with(:image_style_options)
-    end
-
     it 'sets the image style options hash to the options input' do
       expect(fake_class).to have_received(:image_style_options=).
         with(options.slice(:force_actual_format, :base_style_name).
         merge(static_styles: options[:styles], default_processors: options[:processors]))
+    end
+
+    it 'adds a before_update callback for reprocessing thumbnails' do
+      expect(fake_class).to have_received(:before_update).with(:reprocess_thumbnails)
     end
 
     it 'calls to paperclip has attached file' do
