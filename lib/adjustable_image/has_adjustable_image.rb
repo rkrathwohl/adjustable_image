@@ -17,10 +17,7 @@ module AdjustableImage
       define_image_adjustments_setter
 
       define_image_style_options_class_attr
-      define_image_style_options_getter
-
       set_image_style_options
-
       override_user_styles_with_dynamic_injection
 
       force_thumbnail_reprocess_on_update
@@ -45,13 +42,6 @@ module AdjustableImage
 
     def define_image_style_options_class_attr
       @klass.send(:class_attribute, :image_style_options)
-    end
-
-    # Helper method to prevent @@ usage
-    def define_image_style_options_getter
-      @klass.send(:define_method, :image_style_options) do
-        self.image_style_options
-      end
     end
 
     def set_image_style_options
