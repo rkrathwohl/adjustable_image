@@ -8,10 +8,12 @@ module AdjustableImage
                   :crop_height, # new image height after crop
                   :image_width, # resize the image width to
                   :image_height, # resize the image height to
-                  :background_color
+                  :background_color,
+                  :has_adjustments
 
     def initialize(opts = {})
       opts = (opts || {}).with_indifferent_access
+      self.has_adjustments = opts.present?
 
       self.crop_x = opts[:crop_x].to_i || 0
       self.crop_y = opts[:crop_y].to_i || 0
